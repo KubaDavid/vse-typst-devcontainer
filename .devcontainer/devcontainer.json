@@ -1,0 +1,45 @@
+{
+    "name": "VSE Typst Devcontainer",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "TZ": "${localEnv:TZ:Europe/Prague}"
+        }
+    },
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "remoteUser": "vse",
+    "updateRemoteUserUID": true,
+    "mounts": [
+        "source=claude-code-config-${devcontainerId},target=/home/vse/.claude,type=volume",
+        "source=claude-code-bashhistory-${devcontainerId},target=/commandhistory,type=volume"
+    ],
+    "containerEnv": {
+        "TMPDIR": "/tmp",
+        "CLAUDE_CONFIG_DIR": "/home/vse/.claude",
+        "DEVCONTAINER": "true"
+    },
+    "postCreateCommand": "echo 'alias claude-skip=\"claude --dangerously-skip-permissions\"' >> ~/.zshrc",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true,
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.profiles.linux": {
+                    "bash": {
+                        "path": "bash",
+                        "icon": "terminal-bash"
+                    },
+                    "zsh": {
+                        "path": "zsh"
+                    }
+                },
+                "tinymist.exportPdf": "onSave",
+                "tinymist.formatterMode": "typstyle"
+            },
+            "extensions": [
+                "myriad-dreamin.tinymist",
+                "anthropic.claude-code"
+            ]
+        }
+    }
+}
