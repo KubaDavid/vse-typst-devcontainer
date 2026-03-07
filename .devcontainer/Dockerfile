@@ -1,4 +1,4 @@
-FROM ghcr.io/typst/typst:0.14.1
+FROM ghcr.io/typst/typst:0.14.2
 
 ARG TZ
 ENV TZ="$TZ"
