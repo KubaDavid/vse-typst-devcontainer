@@ -18,7 +18,8 @@ RUN apk add --no-cache \
     vim \
     ncurses \
     libstdc++ \
-    libgcc
+    libgcc \
+    font-liberation
 
 # Rename existing typst user (UID/GID 1000) to vse
 # This preserves the UID/GID for proper bind mount permissions
