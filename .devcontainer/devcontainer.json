@@ -33,6 +33,7 @@
                         "path": "zsh"
                     }
                 },
+                "tinymist.rootPath": "src",
                 "tinymist.exportPdf": "onSave",
                 "tinymist.formatterMode": "typstyle"
             },

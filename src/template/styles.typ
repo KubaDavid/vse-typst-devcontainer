@@ -3,7 +3,7 @@
 // Sans-serif font for headings and title page.
 // Liberation Sans is the primary choice; install font-liberation in Alpine.
 // Falls back to available sans-serif fonts.
-#let sans-font = ("Liberation Sans", "DejaVu Sans", "New Computer Modern")
+#let sans-font = ("Liberation Sans", "New Computer Modern")
 
 // Apply all thesis styling rules.
 #let apply-styles(body) = {
@@ -13,12 +13,15 @@
   // Level 1 headings: large, bold, with pagebreak
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
-    text(size: 24pt, weight: "bold", font: sans-font)[
-      #if it.numbering != none {
-        counter(heading).display(it.numbering)
-        [. ]
-      }
-      #it.body
+    v(4pt)
+    block[
+      #text(size: 24pt, weight: "bold")[
+        #if it.numbering != none {
+          counter(heading).display(it.numbering)
+          [. ]
+        }
+        #it.body
+      ]
     ]
     v(20pt)
   }
@@ -84,10 +87,8 @@
   source,
   caption: none,
   language: none,
-  supplement: none,
 ) = figure(
   kind: "code",
-  supplement: supplement,
   caption: caption,
   raw(source, lang: language, block: true),
 )

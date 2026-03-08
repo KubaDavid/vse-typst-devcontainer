@@ -21,12 +21,12 @@
   }
 
   let logo-path = if language == "eng" {
-    "/src/img/FIS_2_logo_2_rgb_EN.pdf"
+    "../img/fis-logo-en.png"
   } else {
-    "/src/img/FIS_2_logo_2_rgb_CZ.pdf"
+    "../img/fis-logo-cz.png"
   }
 
-  page(numbering: none, header: none, footer: none, margin: (top: 25mm, bottom: 25mm, left: 30mm, right: 25mm))[
+  page(numbering: none, header: none, footer: none)[
     #set text(font: sans-font)
     #align(center)[
       #text(size: 24pt)[

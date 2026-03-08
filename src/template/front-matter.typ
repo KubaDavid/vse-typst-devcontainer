@@ -25,6 +25,7 @@
   abstract-en: none,
   keywords-en: none,
 ) = {
+  if abstract-cz == none and abstract-en == none { return }
   pagebreak()
 
   if abstract-cz != none {

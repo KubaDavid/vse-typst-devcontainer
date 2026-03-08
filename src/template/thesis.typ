@@ -2,8 +2,8 @@
 
 #import "locale.typ": get-locale
 #import "title-page.typ": make-title-page
-#import "front-matter.typ": make-ai-declaration, make-acknowledgements, make-abstracts
-#import "styles.typ": apply-styles, make-header, make-footer
+#import "front-matter.typ": make-abstracts, make-acknowledgements, make-ai-declaration
+#import "styles.typ": apply-styles, make-footer, make-header
 
 #let vse-thesis(
   // Required
@@ -12,13 +12,11 @@
   submission-date: none,
   supervisor: none,
   study-program: none,
-
   // Optional with defaults
   thesis-type: "BP",
   language: "cze",
   consultant: none,
   specialization: none,
-
   // Front matter content
   acknowledgements: none,
   ai-declaration: none,
@@ -26,16 +24,15 @@
   abstract-en: none,
   keywords-cz: none,
   keywords-en: none,
-
   // Optional sections
   abbreviations: none,
   show-list-of-figures: false,
   show-list-of-tables: false,
   show-list-of-code: false,
-
   // Bibliography
   bibliography-file: none,
-
+  // Appendices
+  appendices: none,
   // Body
   body,
 ) = {
@@ -63,7 +60,7 @@
     justify: true,
     first-line-indent: 0pt,
     spacing: 11pt,
-    leading: 0.66em,
+    leading: 0.48em,
   )
 
   // Heading numbering
@@ -74,6 +71,9 @@
 
   // Apply heading, caption, and list styles
   show: apply-styles
+
+  // Wire code-figure supplement to locale
+  show figure.where(kind: "code"): set figure(supplement: locale.at("code-supplement"))
 
   // === Title page ===
   make-title-page(
@@ -150,17 +150,26 @@
     numbering: "1",
   )
 
+  counter(page).update(1)
   body
 
   // === Bibliography ===
   if bibliography-file != none {
     pagebreak()
-    // Prepend "/src/" to resolve path from project root, not from this template file.
+    // Resolve relative to this template file's directory (src/template/).
     let bib-path = if bibliography-file.starts-with("/") {
       bibliography-file
     } else {
-      "/src/" + bibliography-file
+      "../" + bibliography-file
     }
     bibliography(bib-path, style: "apa", title: locale.at("bibliography"))
+  }
+
+  // === Appendices ===
+  if appendices != none {
+    pagebreak()
+    counter(heading).update(0)
+    set heading(numbering: "A.1")
+    appendices
   }
 }
