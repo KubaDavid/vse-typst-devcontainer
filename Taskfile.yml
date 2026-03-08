@@ -1,0 +1,23 @@
+version: '3'
+
+vars:
+  SRC: src/main.typ
+  OUT: src/main.pdf
+  PDF_STD: a-2u
+
+tasks:
+  default:
+    desc: List available tasks
+    silent: true
+    cmds:
+      - task --list
+
+  build:
+    desc: Compile the thesis to PDF
+    cmds:
+      - typst compile --pdf-standard {{.PDF_STD}} {{.SRC}} {{.OUT}}
+
+  watch:
+    desc: Watch for changes and auto-compile
+    cmds:
+      - typst watch --pdf-standard {{.PDF_STD}} {{.SRC}} {{.OUT}}

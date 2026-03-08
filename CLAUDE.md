@@ -9,12 +9,14 @@ This is a VS Code Dev Container environment for authoring Typst documents. The p
 ## Build Commands
 
 ```bash
-# Compile Typst document to PDF
-typst compile src/main.typ src/main.pdf
+# Compile thesis to PDF (PDF/A-2u)
+task build
 
 # Watch for changes and auto-compile
-typst watch src/main.typ src/main.pdf
+task watch
 ```
+
+Defined in `Taskfile.yml`. Run `task --list` to see all available tasks.
 
 ## Development Environment
 

@@ -19,7 +19,9 @@ RUN apk add --no-cache \
     ncurses \
     libstdc++ \
     libgcc \
-    font-liberation
+    font-liberation \
+    go-task \
+    && ln -s /usr/bin/go-task /usr/local/bin/task
 
 # Rename existing typst user (UID/GID 1000) to vse
 # This preserves the UID/GID for proper bind mount permissions
