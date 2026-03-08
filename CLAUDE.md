@@ -21,6 +21,7 @@ typst watch src/main.typ src/main.pdf
 - **Container**: Based on `ghcr.io/typst/typst:0.14.2` (Alpine Linux)
 - **Typst Version**: 0.14.2
 - **VS Code Extension**: Tinymist (`myriad-dreamin.tinymist`) - provides LSP, formatting, and auto-export on save
+- **Tinymist Root**: Set to `src` so path resolution matches the CLI (`tinymist.rootPath: "src"`)
 - **Formatter**: typstyle (configured via Tinymist)
 - **Auto-export**: PDF exports automatically on file save
 - **Fonts**: New Computer Modern (serif), Liberation Sans (sans-serif for headings)
@@ -28,25 +29,27 @@ typst watch src/main.typ src/main.pdf
 ## Project Structure
 
 - `src/main.typ` - Main thesis document (uses the template)
-- `src/main.pdf` - Compiled PDF output
 - `src/template/` - VŠE thesis template
-  - `lib.typ` - Public API entry point
+  - `lib.typ` - Public API entry point (exports `vse-thesis`, `code-figure`)
   - `thesis.typ` - Main template function
   - `title-page.typ` - Title page layout
   - `front-matter.typ` - AI declaration, acknowledgements, abstracts
   - `locale.typ` - Trilingual strings (cze/slo/eng)
   - `styles.typ` - Heading, caption, header/footer styles
-- `src/img/` - Logo images (FIS CZ/EN)
+- `src/img/` - Logo images (`fis-logo-cz.png`, `fis-logo-en.png`)
 - `src/references.bib` - Bibliography database
+- `docs/typst-guide.md` - Comprehensive Typst language reference
 - `_original_latex/` - Original LaTeX template (visual reference only)
 - `.devcontainer/` - Dev container configuration
 
-## Typst Language Notes
+## Path Resolution
 
-Typst is a modern typesetting system (alternative to LaTeX). Key syntax:
-- `#set` - Configure document settings (page, text, headings)
-- `#figure` with `table` - Create tables with captions
-- `$...$` - Math expressions
-- `=` / `==` / `===` - Heading levels
-- `#pagebreak()` - Page breaks
-- `#align(center)[...]` - Alignment blocks
+Template files use **relative paths** from `src/template/`:
+- Logos: `../img/fis-logo-cz.png`
+- Bibliography: `../references.bib`
+
+This ensures paths work in both CLI (`typst compile src/main.typ`) and Tinymist (VS Code).
+
+## Typst Language Reference
+
+See `docs/typst-guide.md` for a comprehensive Typst reference (syntax, set/show rules, templates, math, tables, figures, context/introspection, etc.).
