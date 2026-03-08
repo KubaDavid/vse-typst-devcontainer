@@ -4,11 +4,12 @@ Typst template for bachelor's and master's theses at FIS VŠE (Faculty of Inform
 
 ## Quick start
 
-1. Open this repo in VS Code with the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
-2. Reopen in container — Typst, fonts, and tooling are set up automatically
-3. Edit `src/main.typ` with your thesis content
-4. The [Tinymist](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist) extension is pre-installed — gives you LSP, formatting, and auto-export to PDF on save
-5. Or build manually with `task build`
+1. Click **Use this template** → **Create a new repository** on GitHub to create your own private copy
+2. Clone it and open in VS Code with the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
+3. Reopen in container — Typst, fonts, and tooling are set up automatically
+4. Edit `src/main.typ` with your thesis content
+5. The [Tinymist](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist) extension is pre-installed — gives you LSP, formatting, and auto-export to PDF on save
+6. Or build manually with `task build`
 
 ## Build commands
 
